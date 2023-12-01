@@ -16,6 +16,7 @@ struct Items: Codable {
     let collaborative: Bool
     let description: String?
     let href: String
+    let id: String
     let images: [Images]
     let name: String
     let owner: Owner
@@ -23,7 +24,7 @@ struct Items: Codable {
 
 struct Images: Codable {
     let height: Int?
-    let url: String?
+    let url: String
     let width: Int?
 }
 

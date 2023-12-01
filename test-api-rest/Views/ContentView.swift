@@ -8,21 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var contentViewModel = ContentViewModel()
+    @StateObject var contentViewModel = ContentViewModel()
     
     var body: some View {
         VStack {
-            List(contentViewModel.spotify.items, id: \.name) { item in
+            List(contentViewModel.spotify.items, id: \.id) { item in
                 HStack {
-                    if item.images[0].url != nil {
-                        AsyncImage(url: URL(string: item.images[0].url!)) { image in
-                            image.resizable()
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        .frame(width: 100, height: 100)
-
+                    AsyncImage(url: URL(string: item.images[0].url)) { image in
+                        image.resizable()
+                    } placeholder: {
+                        ProgressView()
                     }
+                    .frame(width: 100, height: 100)
                     Text(item.name)
                 }
             }.task {
